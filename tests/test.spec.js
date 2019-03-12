@@ -1,18 +1,10 @@
-
-describe('Test', function() {
-  var document = {
-    getElementById: function(){
-      return {
-        addEventListener: function(){}
-      };
-    }
-  };
-
-  
-
-  describe('add', function() {
-    it('should add two numbers', function() {
-      expect(add(2, 3)).toBe(5);
-    });
-  });
-});
+describe('handleNumber', function(){
+  var addToResultSpy
+  beforeEach(function(){
+    addToResultSpy = spyOn(window, 'addToResult').and.returnValue(true);
+  })
+  it('should add selected number to screen', function(){
+    handleNumber('5');
+    expect(addToResultSpy.calls.mostRecent().args[0]).toBe('5');
+  })
+})
